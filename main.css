@@ -1,3 +1,84 @@
 body {
     background-color: azure;
+    text-align: center;
+}
+
+/* PIE CARD */
+
+#pie-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pieCard {
+    background-color: bisque;
+    box-shadow: 0px 2px 4px black;
+    margin: 30px;
+    padding: 10px;
+    width: 25%;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+}
+
+.pieCard h2 {
+    width: 300px;
+    margin-top: 5px;
+}
+
+img {
+    width: 325px;
+    border: solid 4px white;
+}
+
+#pieSection {
+    font-weight: bold;
+}
+#pieName {
+    padding-top: 5px;
+}
+
+#pieImage {
+    margin-bottom: 10px;
+}
+
+#pieInfo {
+    width: 325px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: white;
+    text-align: left;
+}
+
+#piePrice {
+    padding-top: 0px;
+}
+
+#pieIsWarm {
+    padding-top: 5px;
+}
+
+#pieIsOrganic {
+    padding-top: 5px;
+}
+
+#pieCrust {
+    padding-top: 5px;
+}
+
+#pieIceCream {
+    padding-top: 5px;
+}
+
+#pieAvailable {
+    padding-top: 5px;
+}
+
+#pieDrink {
+    padding-top: 5px;
+}
+
+#pieInstructor {
+    padding-top: 5px;
 }
