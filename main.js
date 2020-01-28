@@ -1,3 +1,4 @@
+// Array of Pie Objects
 const pies = [
     {
         name: "Dutch Apple Pie",
@@ -97,45 +98,76 @@ const pies = [
     },
 ]
 
+// Print to DOM
 const printToDom = (divId, textToPrint) => {
     const selectedDiv = document.getElementById(divId);
     selectedDiv.innerHTML = textToPrint;
 };
 
-// 3 cards to a row
-// nice big images
-// display all information in the pie objects
-const pieBuilder = () => {
+// Pie Builder Function
+const pieBuilder = (monkeybuttArray) => {
     let domString = '';
-    for (let i = 0; i < pies.length; i++) {
+    for (let i = 0; i < monkeybuttArray.length; i++) {
         domString += `<div class="pieCard">`;
-        domString += `<section id="pieName"><h2>${pies[i].name}</h2></section>`;
-        domString += `<section id="pieImage"><img src=${pies[i].imageUrl} alt="A tastey ${pies[i].name}"></section>`;
+        domString += `<section id="pieName"><h2>${monkeybuttArray[i].name}</h2></section>`;
+        domString += `<section id="pieImage"><img src=${monkeybuttArray[i].imageUrl} alt="A tastey ${monkeybuttArray[i].name}"></section>`;
         domString += `<section id="pieInfo">`;
-        domString += `<section id="piePrice"><span id="pieSection">Price:</span> $${pies[i].price}</section>`;
-        if (pies[i].isWarm === true) {
+        domString += `<section id="piePrice"><span id="pieSection">Price:</span> $${monkeybuttArray[i].price}</section>`;
+        if (monkeybuttArray[i].isWarm === true) {
             domString += `<section id="pieIsWarm"><span id="pieSection">Serve:</span> Warm</section>`;
         } else {
             domString += `<section id="pieIsWarm"><span id="pieSection">Serve:</span> Cold</section>`;
         }
-        if (pies[i].isOrganic === true) {
+        if (monkeybuttArray[i].isOrganic === true) {
             domString += `<section id="pieIsOrganic"><span id="pieSection">Organic:</span> Yes</section>`;
         } else {
             domString += `<section id="pieIsOrganic"><span id="pieSection">Organic:</span> No</section>`;
         }
-        domString += `<section id="pieCrust"><span id="pieSection">Crust:</span> ${pies[i].crust}</section>`;
-        domString += `<section id="pieIceCream"><span id="pieSection">Ice Cream:</span> ${pies[i].iceCream}</section>`;
-        if (pies[i].isAvailable === true) {
+        domString += `<section id="pieCrust"><span id="pieSection">Crust:</span> ${monkeybuttArray[i].crust}</section>`;
+        domString += `<section id="pieIceCream"><span id="pieSection">Ice Cream:</span> ${monkeybuttArray[i].iceCream}</section>`;
+        if (monkeybuttArray[i].isAvailable === true) {
             domString += `<section id="pieAvailable"><span id="pieSection">Availability:</span> In Stock!</section>`;
         } else {
             domString += `<section id="pieAvailable"><span id="pieSection">Availability:</span> Out of Stock</section>`;
         }
-        domString += `<section id="pieDrink"><span id="pieSection">Drink Pairing:</span> ${pies[i].drinkPairing}</section>`;
-        domString += `<section id="pieInstructor"><span id="pieSection">Instructor:</span> ${pies[i].instructor}</section>`;
+        domString += `<section id="pieDrink"><span id="pieSection">Drink Pairing:</span> ${monkeybuttArray[i].drinkPairing}</section>`;
+        domString += `<section id="pieInstructor"><span id="pieSection">Instructor:</span> ${monkeybuttArray[i].instructor}</section>`;
         domString += `</section>`;
         domString += `</div>`;
     }
     printToDom('pie-cards', domString);
 };
 
-pieBuilder();
+// Find Pies Function
+const findMyPies = (e) => {
+    const buttonId = e.target.id;
+    if (buttonId === 'All') {
+        pieBuilder(pies);
+    } else {
+        const myPies = [];
+        for (let i=0; i < pies.length; i++) {
+            if( pies[i].instructor === buttonId) {
+                myPies.push(pies[i]);
+            }
+        }
+        pieBuilder(myPies);
+    }
+};
+
+// Click Events Organizer
+const events = () => {
+    document.getElementById('Zoe').addEventListener('click', findMyPies);
+    document.getElementById('Mary').addEventListener('click', findMyPies);
+    document.getElementById('Luke').addEventListener('click', findMyPies);
+    document.getElementById('Joey').addEventListener('click', findMyPies);
+    document.getElementById('All').addEventListener('click', findMyPies);
+};
+
+// Initial Function
+const init = () => {
+    pieBuilder(pies);
+    events();
+};
+
+init();
+
