@@ -1,3 +1,4 @@
+// Array of Pie Objects
 const pies = [
     {
         name: "Dutch Apple Pie",
@@ -97,14 +98,13 @@ const pies = [
     },
 ]
 
+// Print to DOM
 const printToDom = (divId, textToPrint) => {
     const selectedDiv = document.getElementById(divId);
     selectedDiv.innerHTML = textToPrint;
 };
 
-// 3 cards to a row
-// nice big images
-// display all information in the pie objects
+// Pie Builder Function
 const pieBuilder = (monkeybuttArray) => {
     let domString = '';
     for (let i = 0; i < monkeybuttArray.length; i++) {
@@ -138,26 +138,36 @@ const pieBuilder = (monkeybuttArray) => {
     printToDom('pie-cards', domString);
 };
 
+// Find Pies Function
 const findMyPies = (e) => {
     const buttonId = e.target.id;
-    const myPies = [];
     if (buttonId === 'All') {
         pieBuilder(pies);
     } else {
-    for (let i=0; i < pies.length; i++) {
-        if( pies[i].instructor === buttonId) {
-            myPies.push(pies[i]);
+        const myPies = [];
+        for (let i=0; i < pies.length; i++) {
+            if( pies[i].instructor === buttonId) {
+                myPies.push(pies[i]);
+            }
         }
-
-        }
+        pieBuilder(myPies);
     }
-    pieBuilder(myPies);
-}
+};
 
-pieBuilder(pies);
+// Click Events Organizer
+const events = () => {
+    document.getElementById('Zoe').addEventListener('click', findMyPies);
+    document.getElementById('Mary').addEventListener('click', findMyPies);
+    document.getElementById('Luke').addEventListener('click', findMyPies);
+    document.getElementById('Joey').addEventListener('click', findMyPies);
+    document.getElementById('All').addEventListener('click', findMyPies);
+};
 
-document.getElementById('Zoe').addEventListener('click', findMyPies);
-document.getElementById('Mary').addEventListener('click', findMyPies);
-document.getElementById('Luke').addEventListener('click', findMyPies);
-document.getElementById('Joey').addEventListener('click', findMyPies);
-document.getElementById('All').addEventListener('click', findMyPies);
+// Initial Function
+const init = () => {
+    pieBuilder(pies);
+    events();
+};
+
+init();
+
