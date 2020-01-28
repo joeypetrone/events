@@ -97,8 +97,6 @@ const pies = [
     },
 ]
 
-console.log('pies', pies);
-
 const printToDom = (divId, textToPrint) => {
     const selectedDiv = document.getElementById(divId);
     selectedDiv.innerHTML = textToPrint;
@@ -137,7 +135,6 @@ const pieBuilder = () => {
         domString += `</section>`;
         domString += `</div>`;
     }
-    console.log(domString);
     printToDom('pie-cards', domString);
 };
 
